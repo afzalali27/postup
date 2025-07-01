@@ -5,26 +5,10 @@ import Footer from '../components/Footer';
 import PostItem from '../components/PostItem';
 import { fetchPosts } from '../services/api';
 import { type Post } from '../types';
+import { useFetch } from '../hooks';
 
 const HomeScreen = () => {
-  const [posts, setPosts] = useState<Post[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-
-  useEffect(() => {
-    const loadData = async () => {
-      try {
-        const data = await fetchPosts();
-        setPosts(data);
-      } catch (err) {
-        setError((err as Error).message);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    loadData();
-  }, []);
+  const { data: posts, loading, error } = useFetch<Post[]>(fetchPosts);
 
   return (
     <View style={styles.container}>
@@ -35,7 +19,7 @@ const HomeScreen = () => {
         ) : error ? (
           <Text style={styles.error}>{error}</Text>
         ) : (
-          posts.map((post) => (
+          posts?.map((post) => (
             <PostItem key={post.id} {...post} />
           ))
         )}
