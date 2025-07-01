@@ -1,31 +1,16 @@
-import React, { useState, useCallback } from 'react';
-import { View, ScrollView, StyleSheet, Alert } from 'react-native';
-import { StatusBar } from 'expo-status-bar';
-import WelcomeMessage from '../components/WelcomeMessage';
+import React from 'react';
+import { View, ScrollView, StyleSheet } from 'react-native';
+import Header from '../components/Header';
+import Footer from '../components/Footer';
 
-const HomeScreen: React.FC = () => {
-  const [refreshCount, setRefreshCount] = useState(0);
-
-  const handleWelcomePress = useCallback(() => {
-    setRefreshCount(prev => prev + 1);
-    Alert.alert(
-      'Welcome!', 
-      `This is your ${refreshCount + 1} interaction with the welcome message.`
-    );
-  }, [refreshCount]);
-
+const HomeScreen = () => {
   return (
     <View style={styles.container}>
-      <StatusBar style="auto" />
-      <ScrollView 
-        contentContainerStyle={styles.scrollContent}
-        showsVerticalScrollIndicator={false}
-      >
-        <WelcomeMessage 
-          appName="PostUp" 
-          onPress={handleWelcomePress}
-        />
+      <Header />
+      <ScrollView contentContainerStyle={styles.scrollContent}>
+        {/* Posts will be added here later */}
       </ScrollView>
+      <Footer />
     </View>
   );
 };
@@ -33,14 +18,11 @@ const HomeScreen: React.FC = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
   },
   scrollContent: {
     flexGrow: 1,
-    justifyContent: 'center',
-    padding: 20,
+    padding: 16,
   },
 });
 
 export default HomeScreen;
-
