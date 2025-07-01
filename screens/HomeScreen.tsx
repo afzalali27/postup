@@ -4,20 +4,23 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import PostItem from '../components/PostItem';
 import { fetchPosts } from '../services/api';
-
-type Post = {
-  id: number;
-  title: string;
-  body: string;
-};
+import { type Post } from '../types';
 
 const HomeScreen = () => {
   const [posts, setPosts] = useState<Post[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     const loadData = async () => {
+      try {
         const data = await fetchPosts();
         setPosts(data);
+      } catch (err) {
+        setError((err as Error).message);
+      } finally {
+        setLoading(false);
+      }
     };
 
     loadData();
@@ -27,9 +30,15 @@ const HomeScreen = () => {
     <View style={styles.container}>
       <Header />
       <ScrollView contentContainerStyle={styles.scrollContent}>
-        {posts.map((post) => (
+        {loading ? (
+          <ActivityIndicator size="large" color="#2196F3" />
+        ) : error ? (
+          <Text style={styles.error}>{error}</Text>
+        ) : (
+          posts.map((post) => (
             <PostItem key={post.id} {...post} />
-          ))}
+          ))
+        )}
       </ScrollView>
       <Footer />
     </View>
@@ -43,6 +52,12 @@ const styles = StyleSheet.create({
   scrollContent: {
     flexGrow: 1,
     padding: 16,
+  },
+  error: {
+    color: 'red',
+    fontSize: 16,
+    textAlign: 'center',
+    marginTop: 20,
   },
 });
 
