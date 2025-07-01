@@ -1,11 +1,6 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-
-type Post = {
-  id: number;
-  title: string;
-  body: string;
-};
+import { Post } from '../types';
 
 const PostItem = ({ title, body }: Post) => (
   <View style={styles.container}>
