@@ -1,0 +1,51 @@
+# PostUp 📱
+
+A simple Expo (React Native) app that fetches posts from a public API and displays them in a scrollable list with a fixed header and footer.
+
+---
+
+## 🛠 Tech Stack
+
+- [Expo](https://expo.dev/)
+- [React Native](https://reactnative.dev/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [NativeWind](https://www.nativewind.dev/) (Utility-first styling for React Native)
+- Functional components + Hooks
+
+---
+
+## 📦 Setup Instructions
+
+1. **Clone the repo**
+
+```bash
+git clone https://github.com/your-username/postup.git
+cd postup
+```
+
+2. **Install dependencies**
+
+```bash
+npm install
+```
+
+3. **Start the Expo project**
+
+```bash
+npm start
+```
+
+> Or use platform-specific scripts:
+>
+> - Android: `npm run android`
+> - iOS: `npm run ios`
+> - Web: `npm run web`
+
+---
+
+## 🤔 Assumptions & Limitations
+
+- Only one screen (Home) is included.
+- Posts are read-only; no post creation/editing functionality.
+- No pagination or infinite scroll.
+- The mock API is public and unauthenticated, so no auth flow is handled.
