@@ -1,24 +1,10 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text } from 'react-native';
 
 const Header = () => (
-  <View style={styles.container}>
-    <Text style={styles.title}>PostUp App</Text>
+  <View className="h-14 bg-blue-500 justify-center items-center">
+    <Text className="text-white text-xl font-bold">PostUp App</Text>
   </View>
 );
-
-const styles = StyleSheet.create({
-  container: {
-    height: 60,
-    backgroundColor: '#2196F3',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  title: {
-    color: 'white',
-    fontSize: 20,
-    fontWeight: 'bold',
-  },
-});
 
 export default Header;

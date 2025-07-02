@@ -1,31 +1,12 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text } from 'react-native';
 import { Post } from '../types';
 
 const PostItem = ({ title, body }: Post) => (
-  <View style={styles.container}>
-    <Text style={styles.title}>{title}</Text>
-    <Text style={styles.body}>{body}</Text>
+  <View className="mb-4 p-3 bg-gray-100 rounded-lg shadow">
+    <Text className="font-bold text-base mb-1">{title}</Text>
+    <Text className="text-sm text-gray-600">{body}</Text>
   </View>
 );
-
-const styles = StyleSheet.create({
-  container: {
-    marginBottom: 16,
-    padding: 12,
-    backgroundColor: '#f9f9f9',
-    borderRadius: 8,
-    elevation: 1,
-  },
-  title: {
-    fontWeight: 'bold',
-    fontSize: 16,
-    marginBottom: 4,
-  },
-  body: {
-    fontSize: 14,
-    color: '#555',
-  },
-});
 
 export default PostItem;
